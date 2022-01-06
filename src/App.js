@@ -1,5 +1,5 @@
 import RouterSetup from './RouterSetup';
-
+import './index.css'
 function App() {
   return (
     <>

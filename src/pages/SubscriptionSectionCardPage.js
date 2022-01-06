@@ -6,7 +6,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 
 const SubscriptionSectionCardPage = () => {
     return (
-        <>
+        <div className='subscriptions-wrapper'>
             <div className='box-1'></div>
             <div className='box-2'>
                 <div className='subscriptions'>
@@ -57,7 +57,7 @@ const SubscriptionSectionCardPage = () => {
                     <MdKeyboardArrowRight size={'45px'} style={{ 'marginTop': '-10px' }} />
                 </div>
             </div>
-        </>
+        </div>
 
     )
 }
