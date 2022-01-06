@@ -15,8 +15,7 @@ const Hero = () => {
                     by Cici dev
                 </div>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere,
-                    placeat suscipit eius, perspiciatis, maiores saepe corporis quia molestiae a enim culpa commodi soluta! Nesciunt doloremque optio eligendi, eos explicabo necessitatibus?
+                    This site is built for present my frontend project by use react. Purpose of project I need to pactice some frontend skill such as UI design, use API from other site and make the Webpage by UI Design.
                 </p>
                 <div className='btn'>
                     SEE MY PROFILE
@@ -33,7 +32,7 @@ const WrapperContainer = styled.div`
     display:flex;
     margin:-8px;
     padding: 0 80px; 
-    height:650px;
+    height:700px;
     background:#FEECE9;
     justify-content:center;
     align-items:center;
@@ -58,6 +57,7 @@ const WrapperContainer = styled.div`
             background:#FE7E6D;
             border-radius:0px;
             box-shadow: 2px 2px 13px 9px rgba(5, 5, 5, 0.1);
+            cursor: pointer;
         }
     }
     .hero-image{
