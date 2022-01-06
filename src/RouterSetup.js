@@ -13,21 +13,23 @@ import {
     Home,
     Products,
     SingleProduct,
+    SubscriptionSectionCardPage,
     Error
 } from './pages'
 
 const RouterSetup = () => {
     return (
         <Router>
-            <Navbar />
-            <Sidebar />
+            {/* <Navbar /> */}
+            {/* <Sidebar /> */}
             <Routes>
                 <Route path='/' element={<Home />} />
+                <Route path='/subscription' element={<SubscriptionSectionCardPage />} />
                 <Route path='/products' element={<Products />} />
                 <Route path='/products/:product_id' element={<SingleProduct />} />
                 <Route path='*' element={<Error />} />
             </Routes>
-            <Footer />
+            {/* <Footer /> */}
         </Router>
     )
 }
