@@ -33,7 +33,7 @@ const WrapperContainer = styled.div`
     margin:-8px;
     padding: 0 80px; 
     height:700px;
-    background:#FEECE9;
+    background:linear-gradient(180deg, rgba(254,236,233,1) 63%, rgba(255,255,255,1) 89%);
     justify-content:center;
     align-items:center;
     .hero-text{
