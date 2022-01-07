@@ -1,12 +1,44 @@
 import React from 'react'
 import styled from 'styled-components'
 import mockup from '../assets/mockup.jpg'
+import { Link } from 'react-router-dom'
 
-const ProjectSection = () => {
+const ProjectSection = ({ prop }) => {
+    const { title, bg } = prop
     return (
-        <WrapperContainer>
-            <div className='title'>Front End Projects</div>
-            <div className='under-line'></div>
+        <WrapperContainer style={{ 'background': bg }}>
+            <div className='title'>{title}
+                <div className='under-line'></div>
+            </div>
+            <div className='row'>
+                <div className='card'>
+                    <Link to='/subscription'>
+                        <div className='image-card'>
+                            <img src={mockup} />
+                        </div>
+                        <div className='content-card'>
+                            #1 Subscription
+                        </div>
+                    </Link>
+                </div>
+                <div className='card'>
+                    <div className='image-card'>
+                        <img src={mockup} />
+                    </div>
+                    <div className='content-card'>
+                        #1 Subscription
+                    </div>
+                </div>
+                <div className='card'>
+                    <div className='image-card'>
+                        <img src={mockup} />
+                    </div>
+                    <div className='content-card'>
+                        #1 Subscription
+                    </div>
+                </div>
+            </div>
+
             <div className='row'>
                 <div className='card'>
                     <div className='image-card'>
@@ -32,31 +64,6 @@ const ProjectSection = () => {
                         #1 Subscription
                     </div>
                 </div>
-                <div className='card'>
-                    <div className='image-card'>
-                        <img src={mockup} />
-                    </div>
-                    <div className='content-card'>
-                        #1 Subscription
-                    </div>
-                </div>
-                <div className='card'>
-                    <div className='image-card'>
-                        <img src={mockup} />
-                    </div>
-                    <div className='content-card'>
-                        #1 Subscription
-                    </div>
-                </div>
-                <div className='card'>
-                    <div className='image-card'>
-                        <img src={mockup} />
-                    </div>
-                    <div className='content-card'>
-                        #1 Subscription
-                    </div>
-                </div>
-
             </div>
         </WrapperContainer>
     )
@@ -65,19 +72,18 @@ const ProjectSection = () => {
 export default ProjectSection
 
 const WrapperContainer = styled.div`
-    display:flex;
+    display:block;
     width:100%;
     height: max-content;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    min-height:100%;
-    margin-top:40px;
+    margin-top:50px;
+    padding-bottom:100px;
+    // background:#969696;
     .title{
             font-size:30px;
+            text-align:center;
         }
     .under-line{
-        margin-top:5px;
+        margin:5px auto 0;
         width:200px;
         height:3px;
         background:#FE7E6D;
@@ -86,7 +92,7 @@ const WrapperContainer = styled.div`
         width:80%;
         height:300px ;
         // background:#FE7E6D;
-        margin-top:30px;
+        margin:30px auto 0;
         display:flex;
         flex-direction:row;
         flex-wrap:wrap;
@@ -126,6 +132,7 @@ const WrapperContainer = styled.div`
     }
     .card:hover{
         transform:scale(1.05);
+        cursor:pointer;
     }
 
 `

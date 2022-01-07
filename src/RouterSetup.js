@@ -25,8 +25,6 @@ const RouterSetup = () => {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/subscription' element={<SubscriptionSectionCardPage />} />
-                <Route path='/products' element={<Products />} />
-                <Route path='/products/:product_id' element={<SingleProduct />} />
                 <Route path='*' element={<Error />} />
             </Routes>
             {/* <Footer /> */}

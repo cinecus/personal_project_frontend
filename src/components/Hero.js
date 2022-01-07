@@ -16,6 +16,7 @@ const Hero = () => {
                 </div>
                 <p>
                     This site is built for present my frontend project by use react. Purpose of project I need to pactice some frontend skill such as UI design, use API from other site and make the Webpage by UI Design.
+                    {/* Not use for commercial. */}
                 </p>
                 <div className='btn'>
                     SEE MY PROFILE
@@ -30,7 +31,6 @@ const Hero = () => {
 
 const WrapperContainer = styled.div`
     display:flex;
-    margin:-8px;
     padding: 0 80px; 
     height:700px;
     background:linear-gradient(180deg, rgba(254,236,233,1) 63%, rgba(255,255,255,1) 89%);
@@ -55,9 +55,14 @@ const WrapperContainer = styled.div`
             height:50px;
             margin-top:30px;
             background:#FE7E6D;
+            color:#ffff;
+            display:flex;
+            align-items:center;
+            justify-content:center;
             border-radius:0px;
             box-shadow: 2px 2px 13px 9px rgba(5, 5, 5, 0.1);
             cursor: pointer;
+            animation:btnAnimation 5s linear 3s infinite alternate;
         }
     }
     .hero-image{
@@ -72,6 +77,13 @@ const WrapperContainer = styled.div`
             border-radius:50%;
             box-shadow: 0 0 18px 18px white;
         }
+    }
+    @keyframes btnAnimation {
+        0% {transform:scale(1.0);}
+        25% {transform:scale(1.1);}
+        50% {transform:scale(1.2);}
+        75% {transform:scale(1.1);}
+        100% {transform:scale(1);}
     }
 
 `
