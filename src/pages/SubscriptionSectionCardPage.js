@@ -1,65 +1,67 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { FiPaperclip, FiCalendar } from 'react-icons/fi'
 import { FaChromecast } from 'react-icons/fa'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 import styled from 'styled-components'
-
+import { subscription } from '../utils/data/subscription'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 const SubscriptionSectionCardPage = () => {
-    return (
-        <Wrapper>
-            <div className='box-1'></div>
-            <div className='box-2'>
-                <div className='subscriptions'>
-                    <div style={{ "fontFamily": "Merriweather", "fontStyle": "normal", "fontSize": "24px", "lineHeight": "30px", "color": "#1E1D4E" }}>
-                        <strong>Subscriptions</strong>
-                    </div>
-                    <div style={{ "fontFamily": "Poppins", "fontStyle": "normal", "fontSize": "16px", "lineHeight": "24px", "color": "#1E1D4E", "textAlign": "center" }}>
-                        Support these creators by purchasing their monthly subscriptions, and get access to premium content:
-                    </div>
-                    <div className='tags-container'>
-                        <div className='tag'>
-                            <FiPaperclip /> Source files
-                        </div>
-                        <div className='tag'>
-                            <FaChromecast /> Live streams
-                        </div>
-                        <div className='tag'>
-                            <FiCalendar /> Meetup
-                        </div>
-                    </div>
-                </div>
-                <div className='user-container'>
-                    <MdKeyboardArrowLeft size={'45px'} style={{ 'marginTop': '-10px' }}></MdKeyboardArrowLeft >
-                    <div className='user-card'>
-                        <div className='user-image'></div>
-                        <div className='user-info'>
-                            Username
-                            <p>Position</p>
-                        </div>
-                        <div className='btn'>View content</div>
-                    </div>
-                    <div className='user-card'>
-                        <div className='user-image'></div>
-                        <div className='user-info'>
-                            Username
-                            <p>Position</p>
-                        </div>
-                        <div className='btn'>View content</div>
-                    </div>
-                    <div className='user-card'>
-                        <div className='user-image'></div>
-                        <div className='user-info'>
-                            Username
-                            <p>Position</p>
-                        </div>
-                        <div className='btn'>View content</div>
-                    </div>
-                    <MdKeyboardArrowRight size={'45px'} style={{ 'marginTop': '-10px' }} />
-                </div>
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    prevArrow: <MdKeyboardArrowLeft size={'40px'} style={{ 'marginTop': '-10px' }} />,
+    nextArrow: <MdKeyboardArrowRight size={'40px'} style={{ 'marginTop': '-10px' }} />
+  };
+  return (
+    <Wrapper>
+      <div className='box-1'></div>
+      <div className='box-2'>
+        <div className='subscriptions'>
+          <div style={{ "fontFamily": "Merriweather", "fontStyle": "normal", "fontSize": "24px", "lineHeight": "30px", "color": "#1E1D4E" }}>
+            <strong>Subscriptions</strong>
+          </div>
+          <div style={{ "fontFamily": "Poppins", "fontStyle": "normal", "fontSize": "16px", "lineHeight": "24px", "color": "#1E1D4E", "textAlign": "center" }}>
+            Support these creators by purchasing their monthly subscriptions, and get access to premium content:
+          </div>
+          <div className='tags-container'>
+            <div className='tag'>
+              <FiPaperclip /> Source files
             </div>
-        </Wrapper>
+            <div className='tag'>
+              <FaChromecast /> Live streams
+            </div>
+            <div className='tag'>
+              <FiCalendar /> Meetup
+            </div>
+          </div>
+        </div>
+        <Slider className='user-container' {...settings} >
+          {
+            subscription.map(item => {
+              const { id, name, position, image } = item
+              return <Card key={id}>
+                <div className='user-image'>
+                  <img src={image} alt={name} />
+                </div>
+                <div className='user-info'>
+                  {name}
+                  <p>{position}</p>
+                </div>
+                <div className='btn'>View</div>
+              </Card>
+            })
+          }
+        </Slider>
+      </div>
+    </Wrapper >
 
-    )
+  )
 }
 
 export default SubscriptionSectionCardPage
@@ -123,31 +125,35 @@ const Wrapper = styled.div`
   }
   
   .user-container {
-    width: auto;
+    width: 70%;
     height: 260px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 75px;
-    margin-right: 75px;
+    justify-content: center;
+    align-items: center; 
   }
   
-  .user-card {
+`
+
+const Card = styled.div`
     width: 240px;
     height: 260px;
     padding: -24px;
-    display: flex;
+    display: flex !important;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
-  }
-  
-  .user-image {
+    .user-image {
     width: 90px;
     height: 90px;
     background: #1e1d4e;
     border-radius: 50%;
     margin-bottom: 16px;
+    img{
+      width:100%;
+      height:100%;
+      border-radius: 50%;
+      margin-bottom: 16px;
+    }
   }
   
   .btn {
@@ -175,5 +181,11 @@ const Wrapper = styled.div`
     color: #1e1d4e;
     margin-top: 5px;
   }
-  
+`
+
+const Item = styled.div`
+  overflow:hidden;
+  text-align: center;
+  background: #eca;
+  padding:10px;
 `

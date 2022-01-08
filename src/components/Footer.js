@@ -16,7 +16,7 @@ export default Footer
 const FooterWrapperContainer = styled.div`
     width:100%;
     height:100px;
-    background:rgb(189,189,189);
+    background:rgba(189,189,189,0.55);
     vertical-align:middle;
     .footer-title{
         padding-top:40px;

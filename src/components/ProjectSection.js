@@ -110,6 +110,12 @@ const WrapperContainer = styled.div`
         border-radius:10px 10px 10px 10px;
         box-shadow: 0px 2px 20px 3px rgba(5, 5, 5, 0.1);
         // border:1px solid #161616;
+        a{
+            width:100%;
+            height:100%;
+            text-decoration:none;
+            color:#000000;
+        }
         .image-card{
             width:100%;
             height:80%;
