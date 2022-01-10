@@ -22,12 +22,14 @@ const ProjectSection = ({ prop }) => {
                     </Link>
                 </div>
                 <div className='card'>
-                    <div className='image-card'>
-                        <img src={mockup} />
-                    </div>
-                    <div className='content-card'>
-                        #1 Subscription
-                    </div>
+                    <Link to='/flipcard_1'>
+                        <div className='image-card'>
+                            <img src={mockup} />
+                        </div>
+                        <div className='content-card'>
+                            #2 Flip Card
+                        </div>
+                    </Link>
                 </div>
                 <div className='card'>
                     <div className='image-card'>

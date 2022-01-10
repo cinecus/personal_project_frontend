@@ -34,7 +34,7 @@ export default FlipCard_1
 const Wrapper = styled.div`
     width:100vw;
     height:100vh;
-    background:#000000;
+    background:radial-gradient(circle, rgba(189,189,189,0.55) 10%, rgba(172,172,172,1) 24%, rgba(0,0,0,1) 91%);
 `
 
 const Card = styled.div`
@@ -44,12 +44,13 @@ const Card = styled.div`
     transform:translate(-50%,-50%);
     width:20rem;
     height:30rem;
-    background:#000000;
+    border-radius:5px;
     .front,.back{
         width:100%;
         height:100%;
         position:absolute;
         overflow: hidden;
+        border-radius:5px;
         backface-visibility: hidden;
         transition:transform 0.5s linear;
     }
@@ -82,7 +83,7 @@ const Button = styled.div`
     position:absolute;
     left:50%;
     top:80%;
-    transform:translate(-50%,-50%);
+    transform:translate(-50%,-100%);
     height:auto;
     width:120px;
     padding:5px;

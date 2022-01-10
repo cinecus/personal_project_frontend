@@ -7,6 +7,7 @@ import { subscription } from '../utils/data/subscription'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 const SubscriptionSectionCardPage = () => {
   const settings = {
     dots: false,
@@ -15,18 +16,18 @@ const SubscriptionSectionCardPage = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
-    prevArrow: <MdKeyboardArrowLeft size={'40px'} style={{ 'marginTop': '-10px' }} />,
-    nextArrow: <MdKeyboardArrowRight size={'40px'} style={{ 'marginTop': '-10px' }} />
+    prevArrow: <MdKeyboardArrowLeft />,
+    nextArrow: <MdKeyboardArrowRight />
   };
   return (
     <Wrapper>
       <div className='box-1'></div>
       <div className='box-2'>
         <div className='subscriptions'>
-          <div style={{ "fontFamily": "Merriweather", "fontStyle": "normal", "fontSize": "24px", "lineHeight": "30px", "color": "#1E1D4E" }}>
+          <div style={{ "fontStyle": "normal", "fontSize": "24px", "lineHeight": "30px", "color": "#1E1D4E" }}>
             <strong>Subscriptions</strong>
           </div>
-          <div style={{ "fontFamily": "Poppins", "fontStyle": "normal", "fontSize": "16px", "lineHeight": "24px", "color": "#1E1D4E", "textAlign": "center" }}>
+          <div style={{ "fontStyle": "normal", "fontSize": "16px", "lineHeight": "24px", "color": "#1E1D4E", "textAlign": "center" }}>
             Support these creators by purchasing their monthly subscriptions, and get access to premium content:
           </div>
           <div className='tags-container'>
@@ -125,11 +126,13 @@ const Wrapper = styled.div`
   }
   
   .user-container {
-    width: 70%;
+    width: 80%;
     height: 260px;
     display: flex;
-    justify-content: center;
-    align-items: center; 
+    .slick-prev, .slick-next {
+    color: #09529b !important;
+    transform:scale(1.5);
+    }
   }
   
 `
