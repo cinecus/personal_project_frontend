@@ -1,22 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-// import { DraggableLocation } from "react-beautiful-dnd";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Droppable } from 'react-beautiful-dnd';
 import { Draggable } from 'react-beautiful-dnd';
+import coins from '../../utils/data/coins.json'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Loading } from '../../components';
+import axios from 'axios';
+import { useAppContext } from '../../context/app_context';
 
 const DndPage_2 = () => {
+    const [loading, setLoading] = useState(true)
+    const [data, setData] = useState(["ETH", "ADA", "SOL", "BNB", "DOT", "USDT", "BUSD"])
     const [rows, setRows] = useState([
         {
             id: 'A',
             label: "A",
-            urls: ["https://s2.coinmarketcap.com/static/img/coins/64x64/12973.png",
-                "https://s2.coinmarketcap.com/static/img/coins/64x64/16444.png",
-                "https://s2.coinmarketcap.com/static/img/coins/64x64/11770.png",
-                "https://s2.coinmarketcap.com/static/img/coins/64x64/12854.png",
-                "https://s2.coinmarketcap.com/static/img/coins/64x64/14109.png",
-                "https://s2.coinmarketcap.com/static/img/coins/64x64/14621.png",
-                "https://s2.coinmarketcap.com/static/img/coins/64x64/17018.png",]
+            urls: []
         },
         {
             id: 'B',
@@ -35,16 +37,14 @@ const DndPage_2 = () => {
         },
         {
             id: 'Unranked',
-            label: "Unraned",
-            urls: []
+            label: "Unranked",
+            urls: ["BTC",]
         },
     ])
-    console.log(`rows`, rows)
     return (
         <DragDropContext
             onDragEnd={({ destination, source }) => {
                 // // dropped outside the list
-                console.log(`source`, source)
                 if (!destination) {
                     return;
                 }
@@ -52,21 +52,6 @@ const DndPage_2 = () => {
             }}
         >
             <Wrapper>
-                {/* <Tier>
-                    <Circle></Circle>
-                </Tier>
-                <Tier>
-                    <Circle></Circle>
-                </Tier>
-                <Tier>
-                    <Circle></Circle>
-                </Tier>
-                <Tier>
-                    <Circle></Circle>
-                </Tier>
-                <Tier>
-                    <Circle></Circle>
-                </Tier> */}
                 {
                     rows.map((row) => (
                         <List
@@ -77,8 +62,8 @@ const DndPage_2 = () => {
                             row={row} />
                     ))
                 }
-            </Wrapper >
 
+            </Wrapper >
         </DragDropContext>
     )
 }
@@ -116,7 +101,14 @@ const reorderRows = (rows, source, destination) => {
 }
 
 const List = ({ listId, listType, row }) => {
-    console.log(row)
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 8,
+        slidesToScroll: 1,
+        initialSlide: 0,
+    };
     return (
         <Droppable
             droppableId={listId}
@@ -126,29 +118,59 @@ const List = ({ listId, listType, row }) => {
         >
             {
                 dropProvided => (
-                    <div {...dropProvided.droppableProps}>
-                        <Tier ref={dropProvided.innerRef}>
-                            <Circle >{row.label}</Circle>
-                            {
-                                row.urls.map((url, index) => (
-                                    <Draggable key={url} draggableId={url} index={index}>
-                                        {dragProvided => (
-                                            <Card {...dragProvided.dragHandleProps}
-                                                {...dragProvided.draggableProps}
-                                                ref={dragProvided.innerRef}>
-                                                test # {index}
-                                            </Card>
+                    row.label === 'Unranked' ?
+                        <div {...dropProvided.droppableProps}>
+                            <InputContainer>
+                                <UnRank ref={dropProvided.innerRef}>
+                                    {
+                                        row.urls.map((url, index) => (
+                                            <Draggable key={url} draggableId={url} index={index}>
+                                                {dragProvided => (
+                                                    <Card {...dragProvided.dragHandleProps}
+                                                        {...dragProvided.draggableProps}
+                                                        ref={dragProvided.innerRef}>
+                                                        {/* <img src={url} /> */}
+                                                        {url}
+                                                    </Card>
 
-                                        )}
-                                    </Draggable>
-                                ))
-                            }
-                            {dropProvided.placeholder}
-                        </Tier>
-                    </div>
+                                                )}
+                                            </Draggable>
+                                        ))
+                                    }
+
+                                    {dropProvided.placeholder}
+                                </UnRank>
+                                <div className='coin'>
+                                </div>
+                                <input type='search' className='search-coin' />
+                                <button className='btn'>Add Coin</button>
+                            </InputContainer>
+                        </div>
+                        :
+                        <div {...dropProvided.droppableProps}>
+                            <Tier ref={dropProvided.innerRef}>
+                                <Circle >{row.label}</Circle>
+                                {
+                                    row.urls.map((url, index) => (
+                                        <Draggable key={url} draggableId={url} index={index}>
+                                            {dragProvided => (
+                                                <Card {...dragProvided.dragHandleProps}
+                                                    {...dragProvided.draggableProps}
+                                                    ref={dragProvided.innerRef}>
+                                                    <img src={url} />
+                                                </Card>
+                                            )}
+                                        </Draggable>
+                                    ))
+                                }
+
+                                {dropProvided.placeholder}
+                            </Tier>
+                        </div>
+
                 )
             }
-        </Droppable>
+        </Droppable >
     )
 }
 
@@ -164,16 +186,16 @@ const Wrapper = styled.div`
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    user-select: none;
 `
 const Tier = styled.div`
     width:950px;
     height:100px;
     background:#ECB365;
     margin: 10px 0px 10px 50px;
-    border-radius:10px;
+    border-radius:0 10px 10px 0;
     display:flex;
     flex-wrap:wrap;
-    
 `
 
 const Circle = styled.div`
@@ -189,36 +211,28 @@ const Circle = styled.div`
 `
 
 const UnRank = styled.div`
-    width:100%;
+    width:600px;
     height:100px;
+    margin: 0px 0px 0px -50px;
     background:rgba(236,179,101,0.2);
-    margin-top:30px;
     display:flex;
-    flex-wrap:nowrap;
+    flex-wrap:wrap;
 `
 
 const Card = styled.div`
     width:100px;
     height:100%;
-    background:#969696;
+    /* background:#969696; */
     margin-left:2.5px;
     margin-right:2.5px;
     margin-bottom:20px;
-    display:flex;
-    flex-direction:column;
-    border-radius:10px 10px 10px 10px;
+    border-radius:50%;
     box-shadow: 0px 2px 20px 3px rgba(5, 5, 5, 0.1);
     opacity: 1 !important;
-    .image-card{
-            width:100%;
-            height:80%;
-            background: #000;
-            img{
-                border-radius:10px 10px 0px 0px;
-                width:100%;
-                height:100%;
-            }
-        }
+    img{
+        width:100%;
+        height:100%;
+    }
     .content-card{
             width:100%;
             height:20%;
@@ -228,5 +242,32 @@ const Card = styled.div`
     }
     :hover{
         cursor: pointer;
+    }
+`
+
+const InputContainer = styled.div`
+    display:flex;
+    width:1050px;
+    justify-content:center;
+    margin-top:30px;
+    .coin{
+        width:100px;
+        height:100px;
+        margin-left:10px;
+        margin-right:10px;
+        border-radius:50%;
+        background:#969696;
+    }
+    .search-coin{
+        width:100px;
+        height:40px;
+        border-radius:5px;
+    }
+    .btn{
+        width:100px;
+        height:40px;
+        border-radius:5px;
+        background:black;
+        color:white;
     }
 `
