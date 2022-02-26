@@ -17,12 +17,12 @@ const ProjectSection = ({ prop }) => {
                             <img src={mockup} />
                         </div>
                         <div className='content-card'>
-                            #1 Subscription
+                            #1 Slider
                         </div>
                     </Link>
                 </div>
                 <div className='card'>
-                    <Link to='/flipcard_1'>
+                    <Link to='/flipcard'>
                         <div className='image-card'>
                             <img src={mockup} />
                         </div>
@@ -32,23 +32,27 @@ const ProjectSection = ({ prop }) => {
                     </Link>
                 </div>
                 <div className='card'>
-                    <div className='image-card'>
-                        <img src={mockup} />
-                    </div>
-                    <div className='content-card'>
-                        #1 Subscription
-                    </div>
+                    <Link to='/tierlist'>
+                        <div className='image-card'>
+                            <img src={mockup} />
+                        </div>
+                        <div className='content-card'>
+                            #3 Tier List
+                        </div>
+                    </Link>
                 </div>
             </div>
 
             <div className='row'>
                 <div className='card'>
-                    <div className='image-card'>
-                        <img src={mockup} />
-                    </div>
-                    <div className='content-card'>
-                        #1 Subscription
-                    </div>
+                    <Link to='/authen'>
+                        <div className='image-card'>
+                            <img src={mockup} />
+                        </div>
+                        <div className='content-card'>
+                            #4 Authentication
+                        </div>
+                    </Link>
                 </div>
                 <div className='card'>
                     <div className='image-card'>
@@ -111,6 +115,7 @@ const WrapperContainer = styled.div`
         flex-direction:column;
         border-radius:10px 10px 10px 10px;
         box-shadow: 0px 2px 20px 3px rgba(5, 5, 5, 0.1);
+        transition:0.3s ease-in-out all;
         // border:1px solid #161616;
         a{
             width:100%;

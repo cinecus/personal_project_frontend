@@ -13,34 +13,44 @@ import { useAppContext } from '../../context/app_context';
 
 const DndPage_2 = () => {
     const [loading, setLoading] = useState(true)
-    const [data, setData] = useState(["ETH", "ADA", "SOL", "BNB", "DOT", "USDT", "BUSD"])
+    const [item, setItem] = useState('')
+    const onChangeAction = (e) => {
+        setItem(e.target.value)
+    }
     const [rows, setRows] = useState([
         {
-            id: 'A',
-            label: "A",
+            id: 'ULTRA RARE',
+            label: "ULTRA RARE",
             urls: []
         },
         {
-            id: 'B',
-            label: "B",
+            id: 'RARE',
+            label: "RARE",
             urls: []
         },
         {
-            id: 'C',
-            label: "C",
+            id: 'UNCOMMON',
+            label: "UNCOMMON",
             urls: []
         },
         {
-            id: 'D',
-            label: "D",
+            id: 'COMMON',
+            label: "COMMON",
             urls: []
         },
         {
             id: 'Unranked',
             label: "Unranked",
-            urls: ["BTC",]
+            urls: ["A", "B", "C", "D", "E"]
         },
     ])
+    const handleAddItem = () => {
+        const tempRow = [...rows]
+        let find_item = tempRow.find(el => el.id == 'Unranked')
+        find_item.urls = [...find_item.urls, item]
+        setRows(tempRow)
+        setItem('')
+    }
     return (
         <DragDropContext
             onDragEnd={({ destination, source }) => {
@@ -63,10 +73,17 @@ const DndPage_2 = () => {
                     ))
                 }
 
+                <div style={{ 'marginTop': '20px' }}>
+                    {/* <searchItem type='search' name='item' onChange={(e) => onChangeAction(e)} /> */}
+                    <input type='search' className='search-coin' style={{ 'marginRight': '20px' }} name='item' onChange={(e) => onChangeAction(e)} value={item} onKeyPress={(e) => e.key == 'Enter' && handleAddItem()} />
+                    <button className='btn' onClick={handleAddItem}>Add Item</button>
+                </div>
             </Wrapper >
         </DragDropContext>
     )
 }
+
+
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -109,6 +126,7 @@ const List = ({ listId, listType, row }) => {
         slidesToScroll: 1,
         initialSlide: 0,
     };
+
     return (
         <Droppable
             droppableId={listId}
@@ -120,8 +138,8 @@ const List = ({ listId, listType, row }) => {
                 dropProvided => (
                     row.label === 'Unranked' ?
                         <div {...dropProvided.droppableProps}>
-                            <InputContainer>
-                                <UnRank ref={dropProvided.innerRef}>
+                            <InputContainer style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <UnRank ref={dropProvided.innerRef} >
                                     {
                                         row.urls.map((url, index) => (
                                             <Draggable key={url} draggableId={url} index={index}>
@@ -140,10 +158,9 @@ const List = ({ listId, listType, row }) => {
 
                                     {dropProvided.placeholder}
                                 </UnRank>
-                                <div className='coin'>
-                                </div>
-                                <input type='search' className='search-coin' />
-                                <button className='btn'>Add Coin</button>
+                                {/* <div className='coin'>
+                                </div> */}
+
                             </InputContainer>
                         </div>
                         :
@@ -157,7 +174,7 @@ const List = ({ listId, listType, row }) => {
                                                 <Card {...dragProvided.dragHandleProps}
                                                     {...dragProvided.draggableProps}
                                                     ref={dragProvided.innerRef}>
-                                                    <img src={url} />
+                                                    {url}
                                                 </Card>
                                             )}
                                         </Draggable>
@@ -181,17 +198,29 @@ export default DndPage_2
 const Wrapper = styled.div`
     width:100%;
     height:100vh;
-    background:#041C32;
+    background:#F7F7E8;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     user-select: none;
+    .search-coin{
+        width:120px;
+        height:40px;
+        border-radius:5px;
+    }
+    .btn{
+        width:100px;
+        height:40px;
+        border-radius:5px;
+        background:black;
+        color:white;
+    }
 `
 const Tier = styled.div`
     width:950px;
     height:100px;
-    background:#ECB365;
+    background:#C7CFB7;
     margin: 10px 0px 10px 50px;
     border-radius:0 10px 10px 0;
     display:flex;
@@ -201,19 +230,22 @@ const Tier = styled.div`
 const Circle = styled.div`
     width:100px;
     height:100px;
-    background:#064663;
-    color:#04293A;
-    font-size:64px;
+    background:#9DAD7F;
+    color:#eee;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:20px;
     text-align:center;
-    border-radius:50px 0 0 50px;
+    border-radius:10px 0 0 10px;
     position: absolute;
     margin-left:-100px;
 `
 
 const UnRank = styled.div`
-    width:600px;
+    width:1050px;
     height:100px;
-    margin: 0px 0px 0px -50px;
+    margin: -20px 0px 0px -50px;
     background:rgba(236,179,101,0.2);
     display:flex;
     flex-wrap:wrap;
@@ -222,13 +254,17 @@ const UnRank = styled.div`
 const Card = styled.div`
     width:100px;
     height:100%;
-    /* background:#969696; */
+    background:#557174;
     margin-left:2.5px;
     margin-right:2.5px;
     margin-bottom:20px;
     border-radius:50%;
     box-shadow: 0px 2px 20px 3px rgba(5, 5, 5, 0.1);
     opacity: 1 !important;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#eeee;
     img{
         width:100%;
         height:100%;
@@ -247,7 +283,7 @@ const Card = styled.div`
 
 const InputContainer = styled.div`
     display:flex;
-    width:1050px;
+    width:1000px;
     justify-content:center;
     margin-top:30px;
     .coin{
@@ -258,16 +294,5 @@ const InputContainer = styled.div`
         border-radius:50%;
         background:#969696;
     }
-    .search-coin{
-        width:100px;
-        height:40px;
-        border-radius:5px;
-    }
-    .btn{
-        width:100px;
-        height:40px;
-        border-radius:5px;
-        background:black;
-        color:white;
-    }
+    
 `

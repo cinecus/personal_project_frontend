@@ -1,0 +1,1 @@
+export const url = 'https://personal-project-api.herokuapp.com/api/v1/psnp'

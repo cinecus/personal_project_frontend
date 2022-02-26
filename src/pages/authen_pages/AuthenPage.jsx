@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FaUserAlt, FaKey } from 'react-icons/fa'
-import { useAppContext } from '../context/app_context'
+import { ImSpinner } from 'react-icons/im'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
+import { url } from '../../api/url'
 
 const AuthenPage = () => {
     const [inputLogin, setInputLogin] = useState({
@@ -16,6 +17,7 @@ const AuthenPage = () => {
         first_name: '',
         last_name: ''
     })
+    const [loading, setLoading] = useState({ register: false, login: false })
     const [showMessage, setShowMessage] = useState(false)
     const [user_id, setUserId] = useState('')
     const [message, setMessage] = useState('')
@@ -42,9 +44,11 @@ const AuthenPage = () => {
 
     const handleLogin = async () => {
         const Login = async (obj) => {
+            setLoading({ ...loading, login: true })
             const config = {
                 method: 'post',
-                url: 'http://localhost:8000/api/v1/fefu/auth/login',
+                //url: 'http://localhost:8000/api/v1/fefu/auth/login',
+                url: `${url}/auth/login`,
                 data: obj
             }
             const loginAPI = async () => {
@@ -53,9 +57,11 @@ const AuthenPage = () => {
                         localStorage.setItem('user_id', res.data.result.user._id)
                         localStorage.setItem('token', res.data.result.token_id)
                         setUserId(localStorage.getItem('user_id'))
+                        setLoading({ ...loading, login: false })
                     })
                     .catch((err) => {
                         setMessage('please check your username and password')
+                        setLoading({ ...loading, login: false })
                     })
             }
             await loginAPI()
@@ -69,9 +75,10 @@ const AuthenPage = () => {
 
     const handleRegister = async () => {
         const Register = async (obj) => {
+            setLoading({ ...loading, register: true })
             const config = {
                 method: 'post',
-                url: 'http://localhost:8000/api/v1/fefu/auth/register',
+                url: `${url}/auth/register`,
                 data: obj
             }
             const RegisterAPI = async () => {
@@ -79,9 +86,11 @@ const AuthenPage = () => {
                     localStorage.setItem('user_id', res.data.result.user._id)
                     localStorage.setItem('token', res.data.result.token_id)
                     setUserId(localStorage.getItem('user_id'))
+                    setLoading({ ...loading, register: false })
                 })
                     .catch((err) => {
                         setMessage('this username already used')
+                        setLoading({ ...loading, register: false })
                     })
             }
             await RegisterAPI()
@@ -111,46 +120,60 @@ const AuthenPage = () => {
             <HeroText>
                 <div className='title'>Authentication</div>
                 <div className='underline' style={{ 'marginBottom': '20px' }}></div>
-                This page just a demo authentication module by use JWT authentication to set header with HTTP request to send next request.
+                This page just a demo authentication module by use Login API with JWT.
                 <div className='warning'>Warning : Don't use your real username and real password that use in other site</div>
             </HeroText>
             <div style={{ 'display': 'flex' }}>
                 <Container>
                     <div className='header'>Register</div>
-                    <FormBox>
-                        <div className='input-container'>
-                            <FaUserAlt />
-                            <input type='text' style={{ 'marginLeft': '15px' }} onChange={e => onChangeInputRegister(e)} name='username' value={inputRegister.username}></input>
-                        </div>
-                        <div className='input-container'>
-                            <FaKey />
-                            <input type='password' style={{ 'marginLeft': '15px' }} onChange={e => onChangeInputRegister(e)} name='password' value={inputRegister.password}></input>
-                        </div>
-                        <div className='input-container'>
-                            First Name
-                            <input type='text' style={{ 'marginLeft': '15px' }} onChange={e => onChangeInputRegister(e)} name='first_name' value={inputRegister.first_name}></input>
-                        </div>
-                        <div className='input-container'>
-                            Last Name
-                            <input type='text' style={{ 'marginLeft': '15px' }} onChange={e => onChangeInputRegister(e)} name='last_name' value={inputRegister.last_name}></input>
-                        </div>
-                        <button className='btn' type='submit' onClick={handleRegister}>Register</button>
-                    </FormBox>
+                    {
+                        !loading.register ?
+                            <FormBox>
+                                <div className='input-container'>
+                                    <FaUserAlt />
+                                    <input type='text' style={{ 'marginLeft': '15px' }} onChange={e => onChangeInputRegister(e)} name='username' value={inputRegister.username}></input>
+                                </div>
+                                <div className='input-container'>
+                                    <FaKey />
+                                    <input type='password' style={{ 'marginLeft': '15px' }} onChange={e => onChangeInputRegister(e)} name='password' value={inputRegister.password}></input>
+                                </div>
+                                <div className='input-container'>
+                                    First Name
+                                    <input type='text' style={{ 'marginLeft': '15px' }} onChange={e => onChangeInputRegister(e)} name='first_name' value={inputRegister.first_name}></input>
+                                </div>
+                                <div className='input-container'>
+                                    Last Name
+                                    <input type='text' style={{ 'marginLeft': '15px' }} onChange={e => onChangeInputRegister(e)} name='last_name' value={inputRegister.last_name}></input>
+                                </div>
+                                <button className='btn' type='submit' onClick={handleRegister}>Register</button>
+                            </FormBox> :
+                            <div style={{ margin: '50px auto' }}>
+                                <div>loading...</div>
+                                {/* <ImSpinner size={100} /> */}
+                            </div>
+                    }
                 </Container>
-                <Container>
+                <Container style={{ height: '250px' }}>
                     <div className='header'>Login</div>
-                    <FormBox>
-                        <div className='input-container'>
-                            <FaUserAlt />
-                            <input type='text' style={{ 'marginLeft': '15px' }} onChange={e => onChangeInputLogin(e)} name='username' value={inputLogin.username}></input>
-                        </div>
-                        <div className='input-container'>
-                            <FaKey />
-                            <input type='password' style={{ 'marginLeft': '15px' }} onChange={e => onChangeInputLogin(e)} name='password' value={inputLogin.password}></input>
-                        </div>
-                        <button className='btn' type='submit' onClick={handleLogin}>Login</button>
-                        {showMessage && <div style={{ 'color': 'red' }}>{message}</div>}
-                    </FormBox>
+                    {
+                        !loading.login ?
+                            <FormBox>
+                                <div className='input-container'>
+                                    <FaUserAlt />
+                                    <input type='text' style={{ 'marginLeft': '15px' }} onChange={e => onChangeInputLogin(e)} name='username' value={inputLogin.username}></input>
+                                </div>
+                                <div className='input-container'>
+                                    <FaKey />
+                                    <input type='password' style={{ 'marginLeft': '15px' }} onChange={e => onChangeInputLogin(e)} name='password' value={inputLogin.password}></input>
+                                </div>
+                                <button className='btn' type='submit' onClick={handleLogin}>Login</button>
+                                {showMessage && <div style={{ 'color': 'red' }}>{message}</div>}
+                            </FormBox> :
+                            <div style={{ margin: '50px auto' }}>
+                                <div>loading...</div>
+                                {/* <ImSpinner size={100} /> */}
+                            </div>
+                    }
                 </Container>
             </div>
         </Wrapper >
@@ -178,6 +201,9 @@ const Container = styled.div`
     margin-right:5rem;
     background:#5800FF;
     border-radius:10px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
     .header{
         font-size:36px;
         text-align:center;

@@ -3,7 +3,7 @@ import { FiPaperclip, FiCalendar } from 'react-icons/fi'
 import { FaChromecast } from 'react-icons/fa'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 import styled from 'styled-components'
-import { subscription } from '../utils/data/subscription'
+import { subscription } from '../../utils/data/subscription'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

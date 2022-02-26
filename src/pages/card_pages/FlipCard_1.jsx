@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-
+import bnb from '../../assets/bnb.png'
 const FlipCard_1 = () => {
     const [buttonText, setButtonText] = useState('Show')
     const toggleButton = () => {
@@ -14,14 +14,23 @@ const FlipCard_1 = () => {
         <Wrapper>
             <Card>
                 <div className='front' style={buttonText === 'Hide' ? { 'transform': 'perspective(600px) rotateY(-180deg)' } : {}}>
-                    <div className='content'>
-                        Front
-                    </div>
+                    <FrontContent>
+                        <div className='sq1'>
+                            <div className='sq4' style={{ marginLeft: '100px' }}></div>
+                            <div className='sq4' style={{ marginTop: '99px' }}></div>
+                            <div className='sq4' style={{ marginLeft: '26px', marginTop: '125px' }}></div>
+                            <div className='sq4' style={{ marginLeft: '26px', marginTop: '125px' }}></div>
+                            <div className='sq4' style={{ marginLeft: '125px', marginTop: '26px' }}></div>
+                        </div>
+                        <div className='sq2'></div>
+                        <div className='sq3'></div>
+
+                    </FrontContent>
                 </div>
                 <div className='back' style={buttonText === 'Hide' ? { 'transform': 'perspective(600px) rotateY(0deg)' } : {}}>
-                    <div className='content'>
-                        Back
-                    </div>
+                    <BackContent>
+                        <img src={bnb} style={{ width: '200px', height: '200px' }} placeholder='bnb'></img>
+                    </BackContent>
                 </div>
             </Card>
             <Button onClick={toggleButton}>{buttonText}</Button>
@@ -43,25 +52,25 @@ const Card = styled.div`
     top:50%;
     transform:translate(-50%,-50%);
     width:20rem;
-    height:30rem;
-    border-radius:5px;
+    height:20rem;
+    border-radius:50%;
     .front,.back{
         width:100%;
         height:100%;
         position:absolute;
         overflow: hidden;
-        border-radius:5px;
+        border-radius:50%;
         backface-visibility: hidden;
         transition:transform 0.5s linear;
     }
     .front{
         transform: perspective(600px) rotateY(0deg);
-        background:#BC8CF2;
+        background:#e1b303;
         color:#EEEEEE;
     }
     .back{
         transform: perspective(600px) rotateY(180deg);
-        background:#AA14F0;
+        background:#cb9800;
         color:#EEEEEE;
     }
     &:hover > .front{
@@ -81,8 +90,9 @@ const Card = styled.div`
 
 const Button = styled.div`
     position:absolute;
+
     left:50%;
-    top:80%;
+    top:85%;
     transform:translate(-50%,-100%);
     height:auto;
     width:120px;
@@ -94,4 +104,53 @@ const Button = styled.div`
     &:hover{
         opacity:0.9
     }
+`
+
+const FrontContent = styled.div`
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    .sq1{
+        width:150px;
+        height:150px;
+        transform:rotate(45deg);
+        background-color:white;
+        position:absolute;
+    }
+    .sq2{
+        width:100px;
+        height:100px;
+        transform:rotate(45deg);
+        background-color:#e1b303;
+        position:absolute;
+    }
+    .sq3{
+        width:50px;
+        height:50px;
+        transform:rotate(45deg);
+        background-color:white;
+        position:absolute;
+    }
+    .sq4{
+        width:26px;
+        height:26px;
+        //transform:rotate(45deg);
+        background-color:#e1b303;
+        position:absolute;
+    }
+`
+
+const BackContent = styled.div`
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    font-size:100px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 `

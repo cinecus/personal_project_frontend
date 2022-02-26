@@ -9,13 +9,13 @@ const Hero = () => {
         <WrapperContainer>
             <div className='hero-text'>
                 <div className='title'>
-                    FEFU Projects
+                    Cinecus Projects
                 </div>
                 <div className='subtitle'>
                     by Cici dev
                 </div>
                 <p>
-                    This site is built for present my frontend project by use react. Purpose of project I need to pactice some frontend skill such as UI design, use API from other site and make the Webpage by UI Design.
+                    This site is built for present my frontend project by use react. Purpose of project I need to pactice some frontend skill such as UI design, connect API from other site and my own API.
                     {/* Not use for commercial. */}
                 </p>
                 <div className='btn'>

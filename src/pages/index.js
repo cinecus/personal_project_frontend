@@ -2,11 +2,12 @@ import Home from './HomePage'
 import Products from './ProductsPage'
 import SingleProduct from './SingleProductPage'
 import TestPage from './TestPage'
-import SubscriptionSectionCardPage from './SubscriptionSectionCardPage'
-import AuthenPage from './AuthenPage'
-import DashboardPage from './DashboardPage'
+import SubscriptionSectionCardPage from './subscription_pages/SubscriptionSectionCardPage'
+import AuthenPage from './authen_pages/AuthenPage'
+import DashboardPage from './authen_pages/DashboardPage'
+import CSSBattlePage from './css_battle_pages/CSSBattlePage'
+import JustQuizPages from './่just_quiz_pages/JustQuizPages'
 import Error from './ErrorPage'
-
 export {
     Home,
     Products,
@@ -15,5 +16,7 @@ export {
     TestPage,
     AuthenPage,
     DashboardPage,
+    CSSBattlePage,
+    JustQuizPages,
     Error
 }

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useAppContext } from '../context/app_context'
+import { useAppContext } from '../../context/app_context'
 import { Link, useNavigate } from 'react-router-dom'
-import Loading from '../components/Loading'
+import Loading from '../../components/Loading'
 import axios from "axios";
+import { url } from '../../api/url'
 
 const DashboardPage = () => {
     const { Logout, } = useAppContext()
@@ -22,7 +23,8 @@ const DashboardPage = () => {
             try {
                 const config = {
                     method: 'get',
-                    url: 'http://localhost:8000/api/v1/fefu/auth/getUserInfo',
+                    //url: 'http://localhost:8000/api/v1/fefu/auth/getUserInfo',
+                    url: `${url}/auth/getUserInfo`,
                     headers: { Authorization: localStorage.getItem('token') }
                 }
                 axios(config).then((res) => {
