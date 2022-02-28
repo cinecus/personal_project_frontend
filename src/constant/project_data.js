@@ -6,6 +6,7 @@ import fake_news_crypto from '../assets/project/fake_news_crypto.jpg'
 import fake_news_crypto_webadmin from '../assets/project/fake_news_crypto_webadmin.jpg'
 import css_battle from '../assets/project/css_battle.jpg'
 import just_quiz from '../assets/project/just_quiz.jpg'
+import import_export from '../assets/project/import_export.jpg'
 
 export const frontend_item = [
     {
@@ -43,6 +44,12 @@ export const frontend_item = [
         title: 'Just Quiz',
         image: just_quiz,
         url: '/just_quiz'
+    },
+    {
+        key: 7,
+        title: 'Import & Export',
+        image: import_export,
+        url: '/import_export'
     },
 ]
 

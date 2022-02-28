@@ -69,7 +69,7 @@ const RouterSetup = () => {
                     <Route path='/authen' element={<AuthenPage />} />
                     <Route path='/css_battle' element={<CSSBattlePage />} />
                     <Route path='/just_quiz' element={<JustQuizPages/>}/>
-                    <Route path='/demo_table' element={<HandleTablePage/>}/>
+                    <Route path='/import_export' element={<HandleTablePage/>}/>
                     <Route element={<PrivateWrapper />}>
                         <Route path='/dashboard' element={<DashboardPage />} />
                     </Route>
