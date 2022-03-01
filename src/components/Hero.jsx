@@ -18,9 +18,9 @@ const Hero = () => {
                     This site is built for present my frontend project by use react. Purpose of project I need to pactice some frontend skill such as UI design, connect API from other site and my own API.
                     {/* Not use for commercial. */}
                 </p>
-                <div className='btn'>
+                <a className='btn' href="https://github.com/cinecus" target='_blank'>
                     SEE MY PROFILE
-                </div>
+                </a>
             </div>
             <div className='hero-image'>
                 <img src={working_man} />
@@ -55,7 +55,7 @@ const WrapperContainer = styled.div`
             height:50px;
             margin-top:30px;
             background:#FE7E6D;
-            color:#ffff;
+            color:#ffff !important;
             display:flex;
             align-items:center;
             justify-content:center;
