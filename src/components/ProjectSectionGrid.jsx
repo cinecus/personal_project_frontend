@@ -14,7 +14,7 @@ const ProjectSectionGrid = ({prop}) => {
             {
                 cards.map((elem)=>{
                     return (<Card key={elem.key}>
-                        <a href={elem.url} >
+                         <a href={elem.url} target={title==='Other Projects'? '_blank':null}>
                         <div className='image-card'>
                             <img src={elem.image} />
                         </div>
@@ -22,6 +22,7 @@ const ProjectSectionGrid = ({prop}) => {
                             #{elem.key} {elem.title}
                         </div>
                         </a>
+                    
                     </Card>)
                 })
             }

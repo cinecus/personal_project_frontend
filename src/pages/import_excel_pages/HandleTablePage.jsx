@@ -58,7 +58,7 @@ const HandleTablePage = () => {
         const config = {
             method: 'post',
             url: `${url}/excel/import`,
-            //url: `${url_local}/excel/import`,
+            // url: `${url_local}/excel/import`,
             heads: {
                 'content-type': 'multipart/form-data'
             },
@@ -85,6 +85,10 @@ const HandleTablePage = () => {
     }
     const handleExport = () => {
         setLoading(true)
+        const export_data = data.map(el=>{
+            let {ID,...new_obj} = el
+            return new_obj
+        })
         const config = {
             method: 'post',
             url: `${url}/excel/export`,
@@ -92,7 +96,7 @@ const HandleTablePage = () => {
             responseType: 'blob',
             headers: { 'Authorization': token },
             data: {
-                data
+                data:export_data
             }
         }
         axios(config).then((response) => {
@@ -115,10 +119,10 @@ const HandleTablePage = () => {
         customRequest: importRequest
     };
     const onFinish = values => {
-        console.log('Success:', values);
+        // console.log('Success:', values);
         let find_index = data.findIndex(el => el.ID == values.ID)
         data[find_index] = values
-        console.log('data', data)
+        // console.log('data', data)
         setData([...data])
         setIsModalVisible(false);
     };

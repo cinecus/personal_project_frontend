@@ -11,7 +11,7 @@ const HomePage = () => {
             <Hero />
             <ProjectSectionGrid prop={{ title: "Front End Projects", cards: frontend_item }} />
             {/* <ProjectSection prop={{ title: "Front End Projects" }} /> */}
-            <ProjectSectionGrid prop={{ title: "MERN Stack Projects", bg: 'linear-gradient(180deg, rgba(255,255,255,1) 7%, rgba(189,189,189,0.55) 56%)', cards: mern_item }} />
+            <ProjectSectionGrid prop={{ title: "Other Projects", bg: 'linear-gradient(180deg, rgba(255,255,255,1) 7%, rgba(189,189,189,0.55) 56%)', cards: mern_item }} />
             <Footer />
         </div>
     )

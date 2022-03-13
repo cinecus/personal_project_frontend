@@ -7,6 +7,7 @@ import fake_news_crypto_webadmin from '../assets/project/fake_news_crypto_webadm
 import css_battle from '../assets/project/css_battle.jpg'
 import just_quiz from '../assets/project/just_quiz.jpg'
 import import_export from '../assets/project/import_export.jpg'
+import nextcoffee from '../assets/project/nextcoffee.jpg'
 
 export const frontend_item = [
     {
@@ -66,6 +67,11 @@ export const mern_item = [
         title: 'Web blog Admin',
         image: fake_news_crypto_webadmin,
         url: 'https://fakes-news-crypto-webadmin.vercel.app',
-
-    }
+    },
+    {
+        key: 3,
+        title: 'Next Coffee',
+        image: nextcoffee,
+        url: 'https://nextcoffee.vercel.app/',
+    },
 ]

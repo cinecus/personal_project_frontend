@@ -194,7 +194,7 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
     height:auto;
-    width:20rem;
+    width:30rem;
     margin-top:5rem;
     padding:2.5rem 5rem;
     margin-left:5rem;
@@ -237,6 +237,7 @@ const FormBox = styled.div`
     font-size:20px;
     display:flex;
     flex-direction:column;
+    color:black;
     input{
         height:24px;
         width:100%;
