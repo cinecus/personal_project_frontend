@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Loading } from '../../components';
 import axios from 'axios';
-import { useAppContext } from '../../context/app_context';
+
 
 const DndPage_2 = () => {
     const [loading, setLoading] = useState(true)

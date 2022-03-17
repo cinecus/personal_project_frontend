@@ -29,7 +29,6 @@ import GridPage_2 from './pages/grid_pages/GridPage_2';
 import DndPage_1 from './pages/dnd_pages/DndPage_1';
 import DndPage_2 from './pages/dnd_pages/DndPage_2';
 import DndPage_3 from './pages/dnd_pages/DndPage_3';
-import { useAppContext } from './context/app_context';
 import Cookies from 'js-cookie';
 import 'antd/dist/antd.css'
 
