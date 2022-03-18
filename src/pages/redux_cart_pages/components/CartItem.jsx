@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import { Modal, Button, Space } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
-import { deleteCart } from '../../../store/slices/cartSlice'
+import { deleteCart,increaseCartItem,decreseCartItem } from '../../../store/slices/cartSlice'
+import {FaPlus,FaMinus} from 'react-icons/fa'
 const { confirm } = Modal
 
 const CartItem = ({ item }) => {
-    const { id, title, price, img, quantity } = item
+    const { id, title, price, image, quantity } = item
     const dispatch = useDispatch()
     const showConfirm = (id) => {
         confirm({
@@ -26,6 +27,7 @@ const CartItem = ({ item }) => {
     return (
         <Item>
             <div className='cart-item-image'>
+                <img src={image}/>
             </div>
             <div className='cart-item-description'>
                 {/* <div>
@@ -42,14 +44,14 @@ const CartItem = ({ item }) => {
                 </div>
             </div>
             <div className='cart-item-action'>
-                <div>
-                    ^
+                <div className='action' onClick={()=>dispatch(increaseCartItem(id))}>
+                    <FaPlus/>
                 </div>
                 <div>
                     {quantity}
                 </div>
-                <div style={{ 'transform': 'rotate(180deg)' }}>
-                    ^
+                <div className='action'  onClick={()=>dispatch(decreseCartItem(id))}>
+                    <FaMinus/>
                 </div>
             </div>
             <div className='cart-button-delete' onClick={() => showConfirm(id)}>
@@ -63,32 +65,42 @@ export default CartItem
 
 const Item = styled.div`
     height:30vh;
-    background:gray;
+    background:lightgrey;
     padding:20px 40px;
     display:flex;
     justify-content:space-between;
     position: relative;
     border-radius:10px;
+    z-index:1;
+    user-select:none;
     .cart-item-image{
         width:30%;
         height:100%;
-        background:red;
+        background:whitesmoke;
+        img{
+            width:100%;
+            height:100%;
+        }
     }
     .cart-item-description{
         display:flex;
         flex-direction:column;
-        justify-content:space-between;
-        color:white;
+        justify-content:space-around;
+        color:#000;
         font-size:1rem;
         margin-left:5rem;
     }
     .cart-item-action{
         display:flex;
         flex-direction:column;
-        justify-content:space-between;
-        color:white;
+        justify-content:space-around;
+        color:#000;
         font-size:1rem;
+        font-weight:1000;
         margin-left:5rem;
+        .action{
+            cursor: pointer;
+        }
     }
     .cart-button-delete{
         position:absolute;

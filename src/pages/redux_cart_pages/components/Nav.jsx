@@ -48,12 +48,13 @@ const Navbar = styled.div`
     min-width:100%;
     background:#323232;
     display:flex;
-    justify-content:space-between;
+    justify-content:space-around;
     align-items:center;
-    padding:20px 35rem;
+    padding:20px;
     position: fixed;
     top: 0;
     overflow:hidden;
+    z-index:500;
 `
 
 const NavItem = styled.div`
