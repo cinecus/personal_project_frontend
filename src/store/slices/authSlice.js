@@ -1,4 +1,4 @@
-import { crateSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 
 import { signin } from "../../constant/redux_demo_data"
 

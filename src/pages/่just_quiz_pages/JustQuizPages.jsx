@@ -5,83 +5,83 @@ import { quiz } from '../../constant/just_quiz_data'
 import trophy from '../../assets/trophy.svg'
 
 const JustQuizPages = () => {
-  const [event,setEvent] = useState('ready')
-  const [mark,setMark] = useState(0)
-  const [point,setPoint] = useState(0)
-  const handleAnswer= (e,value,index)=>{
+  const [event, setEvent] = useState('start')
+  const [mark, setMark] = useState(0)
+  const [point, setPoint] = useState(0)
+  const handleAnswer = (e, value, index) => {
     console.log('index', index)
     console.log('first', value.choice)
     console.log('first', quiz[index].answer)
-    
-    console.log('va', value.choice===quiz[index].answer)
-    
-    if(value.choice===quiz[index].answer){
-      setPoint(point+1)
+
+    console.log('va', value.choice === quiz[index].answer)
+
+    if (value.choice === quiz[index].answer) {
+      setPoint(point + 1)
     }
-    if(mark < quiz.length-1){
-      setMark(mark+1)
-    } else{
+    if (mark < quiz.length - 1) {
+      setMark(mark + 1)
+    } else {
       setEvent('end')
-    } 
+    }
   }
   return (
     <Wrapper>
       {
-        event==='ready' && <Card>
-        <div className='title'>
+        event === 'ready' && <Card>
+          <div className='title'>
             Just Quiz
           </div>
           <div className='subtitle'>
             Simple question that you can answer it.
           </div>
-          <Button onClick={()=>setEvent('start')}>
-            Start 
+          <Button onClick={() => setEvent('start')}>
+            Start
           </Button>
         </Card>
       }
       {
-        event==='start' && <Question>
+        event === 'start' && <Question>
           {<>
-          
-          <div className='count'>
-            {mark+1}/{quiz.length}
-          </div>
-          <div className='question'>
-            Q{mark+1}: {quiz[mark].question}
-          </div>
-          <div className='image-container'>
-            <img src={quiz[mark].image} placeholder='image question'/>
-          </div>
-          <div className='option-container'>
-          {
-            quiz[mark].option.map((el,i)=>(<div className='option' key={i} onClick={(e)=>handleAnswer(e,el,mark)}>
-              {el.text}
-            </div>))
-          }
-          </div>
+
+            <div className='count'>
+              {mark + 1}/{quiz.length}
+            </div>
+            <div className='question'>
+              Q{mark + 1}: {quiz[mark].question}
+            </div>
+            <div className='image-container'>
+              <img src={quiz[mark].image} placeholder='image question' />
+            </div>
+            <div className='option-container'>
+              {
+                quiz[mark].option.map((el, i) => (<div className='option' key={i} onClick={(e) => handleAnswer(e, el, mark)}>
+                  {el.text}
+                </div>))
+              }
+            </div>
           </>
           }
         </Question>
       }
       {
-        event==='end' && <Question style={{width:'50vw',justifyContent:'center'}}>
-          <div style={{'fontSize':'2rem'}}>
+        event === 'end' && <Question style={{ width: '50vw', justifyContent: 'center' }}>
+          <div style={{ 'fontSize': '2rem' }}>
             Congrats
-          </div> 
+          </div>
           <img src={trophy} placeholder='trophy' width={200} height={200}></img>
-          <div style={{'fontSize':'2rem'}}>
+          <div style={{ 'fontSize': '2rem' }}>
             Your Score : {point} Point
           </div>
           <div className='button-container'>
-          <Button onClick={()=>{
-            setEvent('ready')
-            setMark(0)
-            setPoint(0)
-          }}>
-            Back to Home
-          </Button>
+            <Button onClick={() => {
+              setEvent('ready')
+              setMark(0)
+              setPoint(0)
+            }}>
+              Back to Home
+            </Button>
           </div>
-          
+
         </Question>
       }
     </Wrapper>
@@ -141,17 +141,18 @@ const Question = styled.div`
   display:flex;
   padding:3rem 5rem;
   flex-direction:column;
-  justify-content:start;
+  justify-content:space-between;
   align-items:center;
   position: relative;
   .question{
     text-align:center;
-    font-size:1.8rem;
+    font-size:1.4rem;
     font-weight:bold;
   }
   .image-container{
     width:51.5rem;
-    height:20rem;
+    height:30rem;
+    max-height:50%;
     background:#fff;
     border-radius:10px;
     img{
@@ -163,8 +164,8 @@ const Question = styled.div`
   .option-container{
     display:grid;
     grid-template-columns:25rem 25rem;
-    grid-template-rows: 5rem 5rem;
-    gap:1.5rem;
+    grid-template-rows: 4.5rem 4.5rem;
+    gap:1rem;
   }
   .option{
     margin-top:1.5rem;

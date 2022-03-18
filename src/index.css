@@ -3,4 +3,5 @@
 body {
   font-family: "Roboto Mono" !important;
   margin: 0px;
+  overflow-x: hidden;
 }

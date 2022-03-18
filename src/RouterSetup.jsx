@@ -1,5 +1,5 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from "react-router-dom";
+import React, { useEffect, } from 'react'
+import { BrowserRouter as Router, Routes, Route, Outlet, Navigate, useNavigate } from "react-router-dom";
 
 import {
     Navbar,
@@ -36,6 +36,7 @@ import GridPage_2 from './pages/grid_pages/GridPage_2';
 import DndPage_1 from './pages/dnd_pages/DndPage_1';
 import DndPage_2 from './pages/dnd_pages/DndPage_2';
 import DndPage_3 from './pages/dnd_pages/DndPage_3';
+import { useSelector } from 'react-redux';
 
 
 const PrivateWrapper = () => {
@@ -62,7 +63,21 @@ const ReduxCartWrapper = () => {
     )
 }
 
+const ReduxAuth = ({ children }) => {
+    const { user } = useSelector(state => state.auth)
+    let navigate = useNavigate();
+    useEffect(() => {
+        if (!user) {
+            navigate('/redux/signin')
+        } else {
+            navigate('/redux/product')
+        }
+    }, [user])
+    return children
+}
+
 const RouterSetup = () => {
+
     return (
         <Router>
             {/* <Navbar /> */}
@@ -81,7 +96,11 @@ const RouterSetup = () => {
                     <Route element={<PrivateWrapper />}>
                         <Route path='/dashboard' element={<DashboardPage />} />
                     </Route>
-                    <Route path='redux' element={<ReduxCartWrapper />} >
+                    <Route path='redux' element={
+                        <ReduxAuth>
+                            <ReduxCartWrapper />
+                        </ReduxAuth>
+                    } >
                         <Route path='cart' element={<Cart />} />
                         <Route path='product' element={<Product />} />
                         <Route path='signin' element={<Signin />} />
