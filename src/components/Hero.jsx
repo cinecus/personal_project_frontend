@@ -9,13 +9,13 @@ const Hero = () => {
         <WrapperContainer>
             <div className='hero-text'>
                 <div className='title'>
-                    Cinecus Projects
+                    Cinecus Personal Projects
                 </div>
                 <div className='subtitle'>
-                    by Cici dev
+                    by Cinecus.CC
                 </div>
                 <p>
-                    This site is built for present my frontend project by use react. Purpose of project I need to pactice some frontend skill such as UI design, connect API from other site and my own API.
+                    This site is built for present my frontend project by use ReactJS. Purpose of project I need to pactice some frontend skill such as UI design, connect API from other site and my own API.
                     {/* Not use for commercial. */}
                 </p>
                 <a className='btn' href="https://github.com/cinecus" target='_blank'>
@@ -45,7 +45,8 @@ const WrapperContainer = styled.div`
         flex-direction:column;
         justify-content:center;
         .title{
-            font-size:60px;
+            font-size:50px;
+            font-weight:500;
         }
         .subtitle{
             font-size:20px;

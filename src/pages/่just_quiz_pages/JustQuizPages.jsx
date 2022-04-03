@@ -5,7 +5,7 @@ import { quiz } from '../../constant/just_quiz_data'
 import trophy from '../../assets/trophy.svg'
 
 const JustQuizPages = () => {
-  const [event, setEvent] = useState('start')
+  const [event, setEvent] = useState('ready')
   const [mark, setMark] = useState(0)
   const [point, setPoint] = useState(0)
   const handleAnswer = (e, value, index) => {

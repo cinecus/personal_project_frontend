@@ -89,6 +89,7 @@ export const users = [
     },
 ]
 
+//MOCK UP API
 export function signin(username, password) {
     return new Promise((resolve, reject) => {
         const foundUser = users.find(

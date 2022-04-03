@@ -9,6 +9,7 @@ import just_quiz from '../assets/project/just_quiz.jpg'
 import import_export from '../assets/project/import_export.jpg'
 import nextcoffee from '../assets/project/nextcoffee.jpg'
 import redux_cart from '../assets/project/redux_cart.jpg'
+import responsive from '../assets/project/responsive.jpg'
 
 export const frontend_item = [
     {
@@ -59,6 +60,12 @@ export const frontend_item = [
         image: redux_cart,
         url: '/redux/cart'
     },
+    {
+        key: 9,
+        title: 'Responsive Landing Page',
+        image: responsive,
+        url: '/responsive/home'
+    }
 ]
 
 

@@ -1,4 +1,4 @@
-import React, { useEffect, } from 'react'
+import React, { useEffect, useState} from 'react'
 import { BrowserRouter as Router, Routes, Route, Outlet, Navigate, useNavigate } from "react-router-dom";
 
 import {
@@ -29,6 +29,14 @@ import {
     Product,
     Signin
 } from './pages/redux_cart_pages/pages'
+
+import {
+    HomeResponsivePage
+} from './pages/responsive_pages/pages'
+
+import NavResponsive from './pages/responsive_pages/components/NavResponsive';
+import SidebarResponsive from './pages/responsive_pages/components/SidebarResponsive';
+
 import Nav from './pages/redux_cart_pages/components/Nav'
 import FlipCard_1 from './pages/card_pages/FlipCard_1';
 import GridPage_1 from './pages/grid_pages/GridPage_1';
@@ -76,12 +84,31 @@ const ReduxAuth = ({ children }) => {
     return children
 }
 
+const ResponsiveWrapper = ()=>{
+    const [isOpen,setIsOpen] = useState(false)
+    const toggle = ()=>{
+        setIsOpen(!isOpen)
+    }
+
+    return (
+        <>
+            <NavResponsive isOpen={isOpen} toggle={toggle}/>
+            <SidebarResponsive isOpen={isOpen} toggle={toggle}/>
+            <Outlet/>
+        </>
+    )
+}
+
 const RouterSetup = () => {
+    const [isOpen,setIsOpen] = useState(false)
+    const toggle = ()=>{
+        setIsOpen(!isOpen)
+    }
 
     return (
         <Router>
-            {/* <Navbar /> */}
-            {/* <Sidebar /> */}
+            {/* <Navbar isOpen={isOpen} toggle={toggle}/>
+            <Sidebar isOpen={isOpen}  toggle={toggle}/> */}
 
             <Routes>
                 <Route path='/' element={<Home />} />
@@ -104,6 +131,9 @@ const RouterSetup = () => {
                         <Route path='cart' element={<Cart />} />
                         <Route path='product' element={<Product />} />
                         <Route path='signin' element={<Signin />} />
+                    </Route>
+                    <Route path='responsive' element={<ResponsiveWrapper/>}>
+                        <Route path='home' element={<HomeResponsivePage/>}></Route>
                     </Route>
                 </Route>
                 <Route path='/dndpage_1' element={<DndPage_1 />} />

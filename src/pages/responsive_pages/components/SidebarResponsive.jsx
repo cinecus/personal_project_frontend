@@ -1,11 +1,20 @@
 import React from 'react'
 import { Link as LinkS } from 'react-scroll'
 import {Link as LinkR} from 'react-router-dom'
+import { NavHashLink  } from 'react-router-hash-link';
 
-import {FaTimes} from 'react-icons/fa'
+import {FaTimes,FaGithub} from 'react-icons/fa'
 import styled from 'styled-components'
 
-const Sidebar = ({isOpen,toggle}) => {
+const SidebarResponsive = ({isOpen,toggle}) => {
+    const scrollWithOffset = (el, offset) => {
+        const elementPosition = el.offsetTop - offset;
+        window.scroll({
+            top: elementPosition,
+            left: 0,
+            behavior: "smooth"
+        })
+    }
     return (
         <SidebarContainer isOpen={isOpen} onClick={toggle}>
             <Icon onClick={toggle}>
@@ -13,28 +22,35 @@ const Sidebar = ({isOpen,toggle}) => {
             </Icon>
             <SidebarWrapper>
                 <SidebarMenu>
-                    <SidebarLink to="/item1">
-                        Item1
+                    <SidebarLink to="#section1" smooth scroll={(el) =>  scrollWithOffset(el, 80)}  activeStyle>
+                    Section 1
                     </SidebarLink>
-                    <SidebarLink to="/item2">
-                        Item2
+                    <SidebarLink to="#section2" smooth scroll={(el) =>  scrollWithOffset(el, 80)}  activeStyle>
+                    Section 2
                     </SidebarLink>
-                    <SidebarLink to="/item3">
-                        Item3
+                    <SidebarLink to="#section3" smooth scroll={(el) =>  scrollWithOffset(el, 80)}  activeStyle>
+                    Section 3
                     </SidebarLink>
-                    <SidebarLink to="/item4">
-                        Item4
+                    <SidebarLink to="#section4" smooth scroll={(el) =>  scrollWithOffset(el, 80)}  activeStyle>
+                    Section 4
+                    </SidebarLink>
+                    <SidebarLink to="#section5" smooth scroll={(el) =>  scrollWithOffset(el, 80)}  activeStyle>
+                    Section 5
                     </SidebarLink>
                 </SidebarMenu>
                 <SideBtnWrap>
-                    <SidebarRoute to='/signin'>Sign In</SidebarRoute>
+                    <SidebarRoute href='https://github.com/cinecus' target='_blank'>
+                    <FaGithub size={18}/>
+                        My Github
+                    </SidebarRoute>
                 </SideBtnWrap>
             </SidebarWrapper>
         </SidebarContainer>
-    )
+  )
 }
 
-export default Sidebar
+export default SidebarResponsive
+
 
 const SidebarContainer = styled.aside`  
     position:fixed;
@@ -67,7 +83,7 @@ const Icon = styled.div`
 `
 
 const SidebarWrapper = styled.div`
-    color:#fff;
+    color:#fff !important;
 `
 
 const SidebarMenu = styled.ul`
@@ -75,14 +91,13 @@ const SidebarMenu = styled.ul`
     grid-template-columns:1fr;
     grid-template-rows:repeat(6,80px);
     text-align:center;
-    margin-block-start:0px;
-    margin-block-end:0px;
+    padding-inline-start:0px !important;
     @media screen and (max-width: 480px){
         grid-template-rows:repeat(6,60px)
     }
 `
 
-const SidebarLink = styled(LinkS)`
+const SidebarLink = styled(NavHashLink)`
     display:flex;
     align-items:center;
     justify-content:center;
@@ -95,7 +110,7 @@ const SidebarLink = styled(LinkS)`
     cursor: pointer;
 
     &:hover{
-        color:#01bf71;
+        //color:#256ce1;
         transition:0.2s ease-in-out
     }
 `
@@ -105,9 +120,9 @@ const SideBtnWrap = styled.div`
     justify-content:center;
 `
 
-const SidebarRoute = styled(LinkR)`
+const SidebarRoute = styled.a`
     border-radius:50px;
-    background:#01bf71;
+    background:blueviolet;
     white-space:nowrap;
     padding:16px 64px;
     color:#010606;
@@ -116,7 +131,11 @@ const SidebarRoute = styled(LinkR)`
     cursor:pointer;
     transition:all 0.2s ease-in-out;
     text-decoration:none;
-
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:0.5rem;
     &:hover{
         transition:all 0.2s ease-in-out;
         background:#fff;
