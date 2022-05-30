@@ -21,6 +21,7 @@ import {
     CSSBattlePage,
     JustQuizPages,
     HandleTablePage,
+    DownloadImagePages,
     Error
 } from './pages'
 
@@ -135,6 +136,7 @@ const RouterSetup = () => {
                     <Route path='responsive' element={<ResponsiveWrapper/>}>
                         <Route path='home' element={<HomeResponsivePage/>}></Route>
                     </Route>
+                    <Route path='/download_image' element={<DownloadImagePages/>}/>
                 </Route>
                 <Route path='/dndpage_1' element={<DndPage_1 />} />
                 <Route path='/dndpage_3' element={<DndPage_3 />} />

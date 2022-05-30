@@ -10,6 +10,8 @@ import import_export from '../assets/project/import_export.jpg'
 import nextcoffee from '../assets/project/nextcoffee.jpg'
 import redux_cart from '../assets/project/redux_cart.jpg'
 import responsive from '../assets/project/responsive.jpg'
+import block_box_blog from '../assets/project/block_box_blog.jpg'
+import image_download from '../assets/project/image_download.jpg'
 
 export const frontend_item = [
     {
@@ -30,41 +32,47 @@ export const frontend_item = [
         image: tier_list,
         url: '/tierlist'
     },
+    // {
+    //     key: 4,
+    //     title: 'Authenication',
+    //     image: authen,
+    //     url: '/authen'
+    // },
     {
         key: 4,
-        title: 'Authenication',
-        image: authen,
-        url: '/authen'
-    },
-    {
-        key: 5,
         title: 'CSS Battle',
         image: css_battle,
         url: '/css_battle'
     },
     {
-        key: 6,
+        key: 5,
         title: 'Just Quiz',
         image: just_quiz,
         url: '/just_quiz'
     },
     {
-        key: 7,
+        key: 6,
         title: 'Import & Export',
         image: import_export,
         url: '/import_export'
     },
     {
-        key: 8,
+        key: 7,
         title: 'Redux Cart',
         image: redux_cart,
         url: '/redux/cart'
     },
     {
-        key: 9,
+        key: 8,
         title: 'Responsive Landing Page',
         image: responsive,
         url: '/responsive/home'
+    },
+    {
+        key: 9,
+        title: 'Mockup Image Generator',
+        image: image_download,
+        url: '/image_download'
     }
 ]
 
@@ -72,19 +80,25 @@ export const frontend_item = [
 export const mern_item = [
     {
         key: 1,
-        title: 'Web blog',
+        title: 'Personal Web blog',
+        image: block_box_blog,
+        url: 'https://next-web-blog-tailwind-kgvmlr98f-cinecus.vercel.app/'
+    },
+    {
+        key: 2,
+        title: 'Demo Web blog',
         image: fake_news_crypto,
         url: 'https://mystifying-pasteur-59d14d.netlify.app'
     },
     {
-        key: 2,
-        title: 'Web blog Admin',
+        key: 3,
+        title: 'Demo Web blog Admin',
         image: fake_news_crypto_webadmin,
         url: 'https://fakes-news-crypto-webadmin.vercel.app',
     },
     {
-        key: 3,
-        title: 'Next Coffee',
+        key: 4,
+        title: 'Next Coffee CRUD',
         image: nextcoffee,
         url: 'https://nextcoffee.vercel.app/',
     },

@@ -8,6 +8,7 @@ import DashboardPage from './authen_pages/DashboardPage'
 import CSSBattlePage from './css_battle_pages/CSSBattlePage'
 import JustQuizPages from './่just_quiz_pages/JustQuizPages'
 import HandleTablePage from './import_excel_pages/HandleTablePage'
+import DownloadImagePages from './download_image_pages/pages/DownloadImagePages'
 import Error from './ErrorPage'
 export {
     Home,
@@ -20,5 +21,6 @@ export {
     CSSBattlePage,
     JustQuizPages,
     HandleTablePage,
+    DownloadImagePages,
     Error
 }
