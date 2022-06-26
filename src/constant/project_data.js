@@ -72,7 +72,7 @@ export const frontend_item = [
         key: 9,
         title: 'Mockup Image Generator',
         image: image_download,
-        url: '/image_download'
+        url: '/download_image'
     }
 ]
 
